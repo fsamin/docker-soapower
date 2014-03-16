@@ -1,5 +1,5 @@
 docker-soapower
-==================
+===============
 Dockerfile with ubuntu java / mysql / soapower
 
 ....
