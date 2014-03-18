@@ -5,12 +5,15 @@ if [ ! -f /var/lib/mysql/ibdata1 ]; then
     mysql_install_db
 
     /usr/bin/mysqld_safe &
-    sleep 10s
+    sleep 3s
 
-    echo "CREATE USER 'soapower'@'locahost' IDENTIFIED BY 'soapower';" | mysql -uroot
-	echo "GRANT ALL PRIVILEGES ON 'soapower'.* TO 'soapower'@'localhost' IDENTIFED BY 'soapower';" | mysql -uroot
+    mysql -uroot -e "CREATE USER 'soapower' IDENTIFIED BY 'soapower';"
+    mysql -uroor -e "GRANT ALL ON soapower.* TO 'soapower'@'%' IDENTIFIED BY 'soapower';"
+    mysql -uroor -e "GRANT ALL ON soapower.* TO 'soapower'@'localhost' IDENTIFIED BY 'soapower';FLUSH PRIVILEGES;"
+
     killall mysqld
-    sleep 10s
+    sleep 3s
 fi
 
 /usr/bin/mysqld_safe &
+sleep 3s
