@@ -29,24 +29,17 @@ RUN mkdir /var/run/sshd
 # Create Soapower directory
 RUN mkdir -p /opt/soapower
 
-# Download Soapower distrib 1.1.1
-RUN (cd /opt/soapower && wget --no-check-certificate https://github.com/soapower/soapower/releases/download/1.1.1/soapower-1.1.1.zip -O soapower-1.1.1.zip)
+# Download Soapower distrib 1.2.0
+RUN (cd /opt/soapower && wget --no-check-certificate https://github.com/soapower/soapower/releases/download/1.2.0/soapower-1.2.0.zip -O soapower-1.2.0.zip)
 
-# Unzipping distrib 1.1.1
-RUN (cd /opt/soapower && unzip soapower-1.1.1.zip)
+# Unzipping distrib 1.2.0
+RUN (cd /opt/soapower && unzip soapower-1.2.0.zip)
 
 # Create symbolic lynk
-RUN (cd /opt/soapower && rm -f current; ln -s soapower-1.1.1 current)
-
-# Download start-file
-RUN (cd /opt/soapower/current && wget --no-check-certificate http://raw.github.com/soapower/soapower/1.1.1/soapowerctl.sh)
-
-# Download logger-file
-RUN (cd /opt/soapower/current && wget --no-check-certificate http://raw.github.com/soapower/soapower/1.1.1/conf/logger-prod.xml)
+RUN (cd /opt/soapower && rm -f current; ln -s soapower-1.2.0 current)
 
 # Grants execution
 RUN chmod +x /opt/soapower/current/soapowerctl.sh
-RUN chmod +x /opt/soapower/current/start
 
 ADD run.sh /run.sh
 
